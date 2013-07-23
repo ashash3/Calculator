@@ -38,9 +38,14 @@
     double result = 0;
     if ([operation isEqualToString:@"+"]) {
         result = [self popOperand] + [self popOperand];
-    }
-    else if ([operation isEqualToString:@"*"]) {
+    } else if ([operation isEqualToString:@"*"]) {
         result = [self popOperand] * [self popOperand];
+    } else if ([operation isEqualToString:@"/"]) {
+        double divisor = [self popOperand];
+        result = [self popOperand] / divisor;
+    } else if ([operation isEqualToString:@"-"]) {
+        double subtrahend = [self popOperand];
+        result = [self popOperand] - subtrahend;
     }
     [self pushOperand:result];
     return result;
