@@ -37,7 +37,7 @@
 
 - (IBAction)enterPressed {
     [self.brain pushOperand:[self.display.text doubleValue]];
-    self.userIsInTheMiddleOfEnteringANumber = NO; 
+    self.userIsInTheMiddleOfEnteringANumber = NO;
 }
 
 - (IBAction)operationPressed:(UIButton *)sender {
@@ -46,6 +46,19 @@
     NSString *resultString = [NSString stringWithFormat:@"%g", result];
     self.display.text = resultString; 
 }
+
+- (IBAction)decimalPressed {
+    if (!self.userIsInTheMiddleOfEnteringANumber) {
+        self.display.text = @"0.";
+        self.userIsInTheMiddleOfEnteringANumber = YES;
+    } else {
+        NSRange range = [self.display.text rangeOfString:@"."];
+        if (range.location == NSNotFound) {
+            self.display.text = [self.display.text stringByAppendingString:@"."];
+        }
+    }
+}
+
 
 
 @end
